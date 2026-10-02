@@ -78,7 +78,7 @@ body.in-case .crumb { display: block; }
 .menu-btn { display: none; font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: 8px 0; }
 
 /* tracker */
-.tracker { position: fixed; left: max(24px, calc((100vw - 1240px) / 2 + 32px)); top: 50%; transform: translateY(-50%); z-index: 30; display: none; width: 150px; }
+.tracker { position: fixed; left: 24px; top: 50%; transform: translateY(-50%); z-index: 30; display: none; width: 150px; }
 @media (min-width: 1180px) { .tracker { display: block; } }
 .tracker .label { color: var(--soft); display: block; margin-bottom: 14px; font-size: 10.5px; }
 .tracker ol { list-style: none; margin: 0; padding: 0 0 0 18px; position: relative; display: grid; gap: 4px; }
@@ -486,6 +486,21 @@ mark.code sup { font-family: var(--mono); font-size: 10px; color: var(--teal-ink
 .svd > div + div .label { color: var(--teal); }
 .svd p { margin: 0; font-size: 17px; line-height: 1.45; }
 @media (max-width: 640px) { .svd { grid-template-columns: minmax(0,1fr); } .svd > div + div { border-left: 0; border-top: 1px solid var(--black); } }
+
+/* topic → project links */
+.topic-q { flex-direction: column; align-items: flex-start; gap: 12px; }
+.tq-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.tq-proj { display: inline-flex; align-items: baseline; gap: 8px; padding: 8px 12px; border: 1px solid var(--black); text-decoration: none; min-height: 40px; transition: border-color var(--t-hover), color var(--t-hover), box-shadow var(--t-hover); }
+.tq-proj span { font-family: var(--mono); font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
+.tq-proj b { font-weight: 400; font-size: 14px; color: var(--soft); }
+.tq-proj i { font-style: normal; font-family: var(--mono); transition: transform var(--t-hover) var(--ease), color var(--t-hover); }
+.tq-proj:hover, .tq-proj:focus-visible { border-color: var(--teal); box-shadow: inset 0 -2px 0 var(--teal); }
+.tq-proj:hover i, .tq-proj:focus-visible i { transform: translateX(5px); color: var(--teal-ink); }
+
+.proj { scroll-margin-top: 120px; }
+.proj.ping .proj-link::after { width: 100%; }
+.proj.ping .p-num { color: var(--teal-ink); }
+.proj.ping .hmw em { background-size: 100% 3px; }
 </style>
 </head>
 <body class="clean">
@@ -933,10 +948,21 @@ function pickTopic(i) {
   topicsEl.classList.toggle("has-sel", sel !== null);
   document.querySelectorAll(".proj").forEach(li => li.classList.toggle("dim", sel !== null && !TOPICS[sel].ids.includes(li.dataset.id)));
   if (sel === null) { topicQ.innerHTML = TOPIC_DEFAULT; return; }
-  const t = TOPICS[sel], names = t.ids.map(id => PROJECTS.find(p => p.id === id).org).join(", ");
-  topicQ.innerHTML = `<span class="q">${t.q}</span><span class="soft">Shows up in ${names}.</span><a class="ln label" href="#work" data-route="work" style="color:var(--teal-ink)">See projects ↓</a><button type="button" id="topic-clear">Clear</button>`;
+  const t = TOPICS[sel];
+  const projLinks = t.ids.map(id => { const p = PROJECTS.find(x => x.id === id); return `<a class="tq-proj" href="#work" data-goto="${id}"><span>${p.org}</span><b>${p.domain}</b><i aria-hidden="true">→</i></a>`; }).join("");
+  topicQ.innerHTML = `<span class="q">${t.q}</span><span class="tq-row"><span class="label soft">Shows up in</span>${projLinks}</span><button type="button" id="topic-clear">Clear</button>`;
   $("#topic-clear").addEventListener("click", () => pickTopic(null));
 }
+// topic project links scroll down to that project in Selected research (no case study opened)
+topicQ.addEventListener("click", e => {
+  const a = e.target.closest("a[data-goto]"); if (!a) return;
+  e.preventDefault();
+  const li = document.querySelector(`.proj[data-id="${a.dataset.goto}"]`); if (!li) return;
+  li.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  li.classList.remove("ping"); void li.offsetWidth; li.classList.add("ping");
+  setTimeout(() => li.classList.remove("ping"), 1800);
+  li.querySelector(".proj-link")?.focus({ preventScroll: true });
+});
 topicsEl.addEventListener("click", e => { const b = e.target.closest(".topic"); if (b) pickTopic(+b.dataset.i); });
 
 // ================= RESUME DRAWER =================
