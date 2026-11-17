@@ -446,6 +446,9 @@ em { font-style: normal; }
 .bg h3, .principles-h { font-size: var(--t-17); font-weight: 700; margin-top: var(--s-5); }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .chips li { font-size: var(--t-15); font-weight: 550; padding: 7px 14px; border-radius: var(--r-chip); background: var(--fog); }
+.bg .chips { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bg .chips li { text-align: center; padding: 10px 12px; white-space: nowrap; }
+@media (max-width: 560px) { .bg .chips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .postcard-wrap { perspective: 1200px; position: sticky; top: 32px; }
 .postcard { background: var(--white); border-radius: 6px; padding: 12px 12px 22px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 24px 50px -24px rgba(0,0,0,.4), 0 0 0 1px rgba(0,0,0,.06); transform: translateY(var(--lift, 0)); transition: transform var(--t-ui) var(--ease), box-shadow var(--t-ui) var(--ease); position: relative; }
 .postcard:hover { --lift: -3px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 32px 60px -26px rgba(0,0,0,.45), 0 0 0 1px rgba(0,0,0,.06); }
