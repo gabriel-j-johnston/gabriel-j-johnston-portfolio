@@ -418,6 +418,14 @@ em { font-style: normal; }
 .p-cta i { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--tc); color: var(--white); transition: transform var(--t-ui) var(--spring); }
 .p-cta svg { width: 16px; height: 16px; }
 .panel:hover .p-cta i { transform: translateX(5px); }
+/* line up every row (heading, question, outcome, facts, link) across the three panels */
+@media (min-width: 981px) {
+  .fold { grid-template-rows: repeat(7, auto); }
+  .panel { display: grid; grid-row: span 7; grid-template-rows: subgrid; row-gap: 0; }
+  .panel-body { grid-row: span 5; display: grid; grid-template-rows: subgrid; row-gap: var(--s-2); align-content: start; }
+  .p-facts { margin-top: 0; align-self: start; }
+  .p-cta { justify-self: start; align-self: end; }
+}
 @media (max-width: 980px) {
   .fold { grid-template-columns: minmax(0, 1fr); gap: var(--s-3); perspective: none; }
   .panel, .panel:nth-child(n) { transform: none; border-radius: var(--r-m); overflow: hidden; }
