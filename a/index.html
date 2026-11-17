@@ -30,16 +30,21 @@
   var a = session("gj-ab-assign");
   var assignment = a === "random:" + VARIANT ? "random" : a === "forced:" + VARIANT ? "forced" : "direct_link";
 
+  // Every event (including the page views both sites already send) carries the experiment tags.
+  // gtag's "set" command does not attach custom fields to events, so they are added here.
+  var common = { exp_variant: VARIANT, exp_assignment: assignment };
   window.dataLayer = window.dataLayer || [];
-  window.gtag = function () { dataLayer.push(arguments); };
+  function dlPush() { dataLayer.push(arguments); }
+  window.gtag = function (cmd, name, params) {
+    if (cmd === "event") return dlPush("event", name, Object.assign({}, common, params || {}));
+    return dlPush.apply(null, arguments);
+  };
   gtag("js", new Date());
   gtag("set", "user_properties", { exp_variant: VARIANT, exp_name: EXPERIMENT });
-  var common = { exp_variant: VARIANT, exp_assignment: assignment };
-  if (internal) common.traffic_type = "internal";
-  gtag("set", common);                   // sent with every event on this page
+  if (internal) gtag("set", { traffic_type: "internal" });
 
   // The split page redirects here, so pass on where the visitor really came from.
-  var cfg = {};
+  var cfg = Object.assign({}, common);
   var ref = session("gj-ab-ref");
   if (ref) cfg.page_referrer = ref;
   else if (ref === "") cfg.ignore_referrer = true;
@@ -83,7 +88,7 @@
   var seen = {};
   var io = "IntersectionObserver" in window ? new IntersectionObserver(function (entries) {
     entries.forEach(function (en) {
-      if (!en.isIntersecting) return;
+      if (!en.isIntersecting || !en.target.offsetParent) return;   // skip sections hidden by a view change
       var key = current + ":" + en.target.id; if (seen[key]) return; seen[key] = 1;
       track("section_view", { route: current, section: en.target.id });
     });
