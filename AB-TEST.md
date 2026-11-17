@@ -12,16 +12,16 @@ Google Analytics 4 property (G-EEBJ189DWL), and every event is tagged with the v
 | `b/index.html` | The redesign, unchanged apart from the tracking block in `<head>`. |
 
 Put all three in the root of the GitHub Pages repo, replacing the current `index.html`. Old links such as
-`yoursite/#case-equinix` still work: the split page passes the `#case-…` part through.
+`https://gabriel-j-johnston.github.io/gabriel-j-johnston-portfolio/#case-equinix` still work: the split page passes the `#case-…` part through.
 
 ## Links to use
 
-- `yoursite/` is the normal link for applications, LinkedIn, and your email signature. It is randomized.
-- `yoursite/?me=1` should be opened once in every browser you use. It marks your own visits as internal so they
+- `https://gabriel-j-johnston.github.io/gabriel-j-johnston-portfolio/` is the normal link for applications, LinkedIn, and your email signature. It is randomized.
+- `https://gabriel-j-johnston.github.io/gabriel-j-johnston-portfolio/?me=1` should be opened once in every browser you use. It marks your own visits as internal so they
   can be filtered out. `?me=0` undoes it.
-- `yoursite/?v=a` or `?v=b` forces a version, for showing someone a specific design. These visits are tagged
+- `https://gabriel-j-johnston.github.io/gabriel-j-johnston-portfolio/?v=a` or `?v=b` forces a version, for showing someone a specific design. These visits are tagged
   `exp_assignment = forced`; leave them out of the analysis.
-- UTM tags work as usual, for example `yoursite/?utm_source=linkedin&utm_medium=post`.
+- UTM tags work as usual, for example `https://gabriel-j-johnston.github.io/gabriel-j-johnston-portfolio/?utm_source=linkedin&utm_medium=post`.
 
 ## What gets recorded
 
