@@ -494,11 +494,12 @@ em { font-style: normal; }
 .plan-in { position: relative; padding-block: var(--s-8) var(--s-6); display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: var(--s-5); align-items: end; }
 .plan h2 { font-size: var(--t-hero); font-weight: 780; line-height: .84; letter-spacing: -.03em; font-stretch: 68%; }
 .plan .lead { color: rgba(255,255,255,.88); margin-bottom: var(--s-3); font-size: var(--t-30); }
-.c-rows { display: grid; gap: 10px; }
+.c-rows { display: grid; gap: 10px; container-type: inline-size; }
 .c-row { display: grid; grid-template-columns: 96px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 10px 10px 20px; border-radius: 22px; }
 .c-row > * { position: relative; z-index: 3; }
 .c-row .k { font-size: var(--t-13); font-weight: 600; color: rgba(255,255,255,.7); }
-.c-row .v { font-size: var(--t-17); font-weight: 550; overflow-wrap: anywhere; user-select: all; }
+.c-row .v { font-size: var(--t-17); font-weight: 550; user-select: all; }
+#email-text { white-space: nowrap; }
 .c-act { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; min-width: 96px; padding: 0 18px; border-radius: var(--r-chip); background: var(--white); color: var(--black); font-size: var(--t-15); font-weight: 700; text-decoration: none; transition: transform var(--t-fast) var(--ease), background var(--t-ui); overflow: hidden; }
 .c-act:active { transform: scale(.95); }
 .c-act svg { width: 16px; height: 16px; }
@@ -515,7 +516,14 @@ em { font-style: normal; }
 .foot ul a:hover, .foot ul button:hover { color: var(--white); text-decoration: underline; text-underline-offset: 4px; }
 .foot .sig { font-family: var(--serif); font-size: var(--t-24); font-weight: 300; line-height: 1.35; text-align: right; }
 @media (max-width: 860px) { .plan-in { grid-template-columns: minmax(0, 1fr); padding-top: var(--s-7); } .foot { grid-template-columns: 1fr 1fr; } .foot .sig { grid-column: 1 / -1; text-align: left; } }
-@media (max-width: 520px) { .c-row { grid-template-columns: minmax(0, 1fr) auto; padding-left: 16px; } .c-row .k { grid-column: 1 / -1; margin-bottom: -6px; } .c-row .v { font-size: var(--t-15); overflow-wrap: normal; } .c-act { min-width: 0; padding: 0 14px; } }
+/* narrow column: label above the value; one shared, fluid size keeps every value on one line */
+@container (max-width: 539px) {
+  .c-row { grid-template-columns: minmax(0, 1fr) auto; padding-left: 16px; }
+  .c-row .k { grid-column: 1 / -1; margin-bottom: -6px; }
+  .c-row .v { font-size: clamp(12px, calc((100cqi - 134px) / 16.6), 17px); }
+  .c-act { min-width: 92px; padding: 0 14px; }
+}
+@container (max-width: 329px) { .c-act { min-width: 76px; padding: 0 10px; gap: 6px; } }
 
 /* =====================================================================
    RESUME SHEET
