@@ -205,16 +205,16 @@ em { font-style: normal; }
 
 /* links that read as text */
 .tl { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); transition: text-decoration-color var(--t-fast), text-decoration-thickness var(--t-fast); }
-.tl:hover { text-decoration-color: currentColor; text-decoration-thickness: 2px; }
+@media (hover: hover) { .tl:hover { text-decoration-color: currentColor; text-decoration-thickness: 2px; } }
 
 /* ---------- buttons ---------- */
 .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: var(--r-chip); font-size: var(--t-15); font-weight: 650; letter-spacing: .005em; text-decoration: none; background: var(--black); color: var(--white); transition: transform var(--t-fast) var(--ease), background var(--t-fast); }
-.btn:hover { transform: translateY(-1px); }
+@media (hover: hover) { .btn:hover { transform: translateY(-1px); } }
 .btn:active { transform: scale(.97); }
 .btn .ic { width: 18px; height: 18px; transition: transform var(--t-ui) var(--spring); }
-.btn:hover .ic { transform: translateX(3px); }
+@media (hover: hover) { .btn:hover .ic { transform: translateX(3px); } }
 .btn.quiet { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); }
-.btn.quiet:hover { background: var(--ink); color: var(--white); }
+@media (hover: hover) { .btn.quiet:hover { background: var(--ink); color: var(--white); } }
 
 /* =====================================================================
    LIQUID GLASS
@@ -240,7 +240,7 @@ em { font-style: normal; }
   background: radial-gradient(160px 110px at var(--mx, 25%) var(--my, -10%), rgba(255,255,255,.75), rgba(255,255,255,0) 70%);
   mix-blend-mode: overlay; opacity: .55; transition: opacity var(--t-ui);
 }
-.glass:hover::after { opacity: 1; }
+@media (hover: hover) { .glass:hover::after { opacity: 1; } }
 .glass.dark {
   background: linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.05));
   box-shadow:
@@ -266,7 +266,7 @@ em { font-style: normal; }
 .dock.tuck { transform: translate(-50%, calc(100% + 40px)); }
 .dock ul { display: flex; gap: 2px; position: relative; z-index: 3; }
 .dock a, .dock button { position: relative; z-index: 3; display: grid; place-items: center; min-height: 44px; padding: 0 18px; border-radius: var(--r-chip); font-size: var(--t-15); font-weight: 600; letter-spacing: .005em; text-decoration: none; color: var(--ink-2); transition: color var(--t-ui); white-space: nowrap; }
-.dock a:hover, .dock button:hover { color: var(--ink); }
+@media (hover: hover) { .dock a:hover, .dock button:hover { color: var(--ink); } }
 .dock [aria-current="true"] { color: var(--ink); }
 .drop { position: absolute; z-index: 1; top: 6px; left: 0; height: 44px; width: 60px; border-radius: var(--r-chip); background: rgba(255,255,255,.92); box-shadow: 0 1px 0 rgba(255,255,255,1) inset, 0 0 0 .5px rgba(0,0,0,.08), 0 4px 14px -4px rgba(0,0,0,.25); opacity: 0; pointer-events: none; }
 @media (max-width: 480px) { .dock a, .dock button { padding: 0 12px; font-size: 14px; } .dock { padding: 5px; } .drop { top: 5px; } }
@@ -331,13 +331,16 @@ em { font-style: normal; }
 .legend h2 span { font-weight: 500; color: var(--ink-3); }
 .legend ul { display: grid; gap: 2px; position: relative; z-index: 3; }
 .legend a { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 10px 12px; border-radius: 16px; text-decoration: none; transition: background var(--t-fast); }
-.legend a:hover, .legend a.on { background: rgba(255,255,255,.7); }
+.legend a.on { background: rgba(255,255,255,.7); }
+@media (hover: hover) { .legend a:hover { background: rgba(255,255,255,.7); } }
 .legend .sw { height: 0; border-top: 3.5px dashed var(--tc); transition: border-top-style var(--t-fast); }
-.legend a.on .sw, .legend a:hover .sw { border-top-style: solid; }
+.legend a.on .sw { border-top-style: solid; }
+@media (hover: hover) { .legend a:hover .sw { border-top-style: solid; } }
 .legend b { display: block; font-weight: 700; font-size: var(--t-17); line-height: 1.2; }
 .legend small { display: block; font-size: var(--t-13); color: var(--ink-3); font-weight: 500; }
 .legend .go { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--tc); color: var(--white); transform: scale(.8); opacity: 0; transition: transform var(--t-ui) var(--spring), opacity var(--t-fast); }
-.legend a:hover .go, .legend a.on .go, .legend a:focus-visible .go { transform: scale(1); opacity: 1; }
+.legend a.on .go, .legend a:focus-visible .go { transform: scale(1); opacity: 1; }
+@media (hover: hover) { .legend a:hover .go { transform: scale(1); opacity: 1; } }
 .legend .go svg { width: 16px; height: 16px; }
 
 .status { position: absolute; right: var(--pad); top: var(--s-4); z-index: 5; display: inline-flex; align-items: center; gap: 10px; border-radius: var(--r-chip); padding: 10px 18px 10px 14px; font-size: var(--t-15); font-weight: 600; }
@@ -387,15 +390,18 @@ em { font-style: normal; }
 .panel::before { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; z-index: 2; transition: opacity var(--t-slow); }
 .panel:nth-child(1)::before { background: linear-gradient(90deg, rgba(0,0,0,0) 70%, rgba(0,0,0,.07)); }
 .panel:nth-child(3)::before { background: linear-gradient(270deg, rgba(0,0,0,0) 70%, rgba(0,0,0,.07)); }
-.fold:hover .panel, .fold:focus-within .panel { transform: none; }
-.fold:hover .panel::before, .fold:focus-within .panel::before { opacity: 0; }
-.panel:hover, .panel:focus-within { z-index: 3; box-shadow: 0 0 0 1px var(--rule), 0 30px 60px -30px rgba(0,0,0,.35); }
+.fold:focus-within .panel { transform: none; }
+@media (hover: hover) { .fold:hover .panel { transform: none; } }
+.fold:focus-within .panel::before { opacity: 0; }
+@media (hover: hover) { .fold:hover .panel::before { opacity: 0; } }
+.panel:focus-within { z-index: 3; box-shadow: 0 0 0 1px var(--rule), 0 30px 60px -30px rgba(0,0,0,.35); }
+@media (hover: hover) { .panel:hover { z-index: 3; box-shadow: 0 0 0 1px var(--rule), 0 30px 60px -30px rgba(0,0,0,.35); } }
 .panel-blaze { height: 8px; background: var(--tc); }
 .panel:nth-child(1) .panel-blaze { border-top-left-radius: var(--r-m); }
 .panel:nth-child(3) .panel-blaze { border-top-right-radius: var(--r-m); }
 .panel-media { aspect-ratio: 16 / 11; overflow: hidden; background: var(--fog); position: relative; }
 .panel-media img { width: 100%; height: 100%; object-fit: cover; transition: transform 900ms var(--ease); }
-.panel:hover .panel-media img { transform: scale(1.045); }
+@media (hover: hover) { .panel:hover .panel-media img { transform: scale(1.045); } }
 .panel-media.fit { background: #E5F1FD; }
 .panel-media.fit img { object-fit: contain; padding: 8%; }
 .panel-media.ano img { object-position: 0% 100%; }
@@ -417,7 +423,7 @@ em { font-style: normal; }
 .p-cta { display: inline-flex; align-items: center; gap: 10px; margin-top: var(--s-1); font-size: var(--t-15); font-weight: 700; color: var(--tc); }
 .p-cta i { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--tc); color: var(--white); transition: transform var(--t-ui) var(--spring); }
 .p-cta svg { width: 16px; height: 16px; }
-.panel:hover .p-cta i { transform: translateX(5px); }
+@media (hover: hover) { .panel:hover .p-cta i { transform: translateX(5px); } }
 /* line up every row (heading, question, outcome, facts, link) across the three panels */
 @media (min-width: 981px) {
   .fold { grid-template-rows: repeat(7, auto); }
@@ -459,7 +465,7 @@ em { font-style: normal; }
 @media (max-width: 560px) { .bg .chips { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .postcard-wrap { perspective: 1200px; position: sticky; top: 32px; }
 .postcard { background: var(--white); border-radius: 6px; padding: 12px 12px 22px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 24px 50px -24px rgba(0,0,0,.4), 0 0 0 1px rgba(0,0,0,.06); transform: translateY(var(--lift, 0)); transition: transform var(--t-ui) var(--ease), box-shadow var(--t-ui) var(--ease); position: relative; }
-.postcard:hover { --lift: -3px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 32px 60px -26px rgba(0,0,0,.45), 0 0 0 1px rgba(0,0,0,.06); }
+@media (hover: hover) { .postcard:hover { --lift: -3px; box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 32px 60px -26px rgba(0,0,0,.45), 0 0 0 1px rgba(0,0,0,.06); } }
 .postcard figure { position: relative; aspect-ratio: 4 / 3; overflow: hidden; border-radius: 3px; }
 .postcard img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 55%; }
 .postcard figure::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(400px 260px at var(--gx, 30%) var(--gy, 0%), rgba(255,255,255,.35), transparent 60%); mix-blend-mode: soft-light; opacity: var(--go, 0); transition: opacity var(--t-ui); }
@@ -483,7 +489,7 @@ em { font-style: normal; }
 .pub p { margin-top: 8px; font-family: var(--serif); font-size: var(--t-17); color: var(--ink-2); line-height: 1.5; max-width: 62ch; }
 .pub-links { display: grid; gap: 8px; justify-items: start; }
 .chip-link { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border-radius: var(--r-chip); background: var(--fog); font-size: var(--t-15); font-weight: 650; text-decoration: none; white-space: nowrap; transition: background var(--t-fast), color var(--t-fast); }
-.chip-link:hover { background: var(--black); color: var(--white); }
+@media (hover: hover) { .chip-link:hover { background: var(--black); color: var(--white); } }
 .chip-link svg { width: 14px; height: 14px; }
 .chip-static { background: transparent; color: var(--ink-3); padding-inline: 0; }
 @media (max-width: 860px) { .pub { grid-template-columns: minmax(0, 1fr); padding: var(--s-3); } .pub-links { grid-auto-flow: column; justify-content: start; } }
@@ -513,7 +519,7 @@ em { font-style: normal; }
 .foot .small { color: rgba(255,255,255,.66); margin-top: 4px; }
 .foot ul { display: grid; gap: 6px; }
 .foot ul a, .foot ul button { font-size: var(--t-15); font-weight: 600; text-decoration: none; color: rgba(255,255,255,.86); min-height: 32px; display: inline-flex; align-items: center; }
-.foot ul a:hover, .foot ul button:hover { color: var(--white); text-decoration: underline; text-underline-offset: 4px; }
+@media (hover: hover) { .foot ul a:hover, .foot ul button:hover { color: var(--white); text-decoration: underline; text-underline-offset: 4px; } }
 .foot .sig { font-family: var(--serif); font-size: var(--t-24); font-weight: 300; line-height: 1.35; text-align: right; }
 @media (max-width: 860px) { .plan-in { grid-template-columns: minmax(0, 1fr); padding-top: var(--s-7); } .foot { grid-template-columns: 1fr 1fr; } .foot .sig { grid-column: 1 / -1; text-align: left; } }
 /* narrow column: label above the value; one shared, fluid size keeps every value on one line */
@@ -542,7 +548,7 @@ dialog.sheet.open::backdrop { opacity: 1; }
 .sheet-head h2 { font-size: var(--t-40); font-weight: 760; letter-spacing: -.02em; font-stretch: 78%; }
 .sheet-acts { display: flex; gap: 8px; align-items: center; }
 .icon-btn { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: rgba(0,0,0,.07); transition: background var(--t-fast), transform var(--t-fast); }
-.icon-btn:hover { background: rgba(0,0,0,.13); }
+@media (hover: hover) { .icon-btn:hover { background: rgba(0,0,0,.13); } }
 .icon-btn:active { transform: scale(.92); }
 .icon-btn svg { width: 18px; height: 18px; }
 .rs { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: var(--s-2) var(--s-4); padding-top: var(--s-3); }
@@ -572,7 +578,7 @@ dialog.sheet.open::backdrop { opacity: 1; }
 .back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 18px 0 12px; border-radius: var(--r-chip); text-decoration: none; font-size: var(--t-15); font-weight: 650; color: var(--white); }
 .back > * { position: relative; z-index: 3; }
 .back svg { width: 18px; height: 18px; transition: transform var(--t-ui) var(--spring); }
-.back:hover svg { transform: translateX(-4px); }
+@media (hover: hover) { .back:hover svg { transform: translateX(-4px); } }
 .case-grid { margin-top: var(--s-6); display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--s-4) var(--s-5); align-items: end; }
 .case-org { display: flex; gap: 6px 14px; align-items: baseline; flex-wrap: wrap; }
 .case-org b { font-size: var(--t-24); font-weight: 750; font-stretch: 85%; }
@@ -616,7 +622,8 @@ dialog.sheet.open::backdrop { opacity: 1; }
 .rail a { position: relative; display: block; padding: 7px 0; font-size: var(--t-15); font-weight: 550; color: var(--ink-3); text-decoration: none; transition: color var(--t-fast); }
 .rail a::before { content: ""; position: absolute; left: -22px; top: 50%; width: 10px; height: 10px; margin-top: -5px; border-radius: 50%; background: var(--white); box-shadow: 0 0 0 2px color-mix(in srgb, var(--trail) 55%, white); transition: background var(--t-fast); }
 .rail a.past::before { background: var(--trail); box-shadow: 0 0 0 2px var(--trail); }
-.rail a:hover, .rail a[aria-current="true"] { color: var(--ink); }
+.rail a[aria-current="true"] { color: var(--ink); }
+@media (hover: hover) { .rail a:hover { color: var(--ink); } }
 .rail a[aria-current="true"] { font-weight: 700; }
 .hiker { position: absolute; left: 0; top: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--trail); box-shadow: 0 0 0 4px var(--white), 0 0 0 5px color-mix(in srgb, var(--trail) 40%, white), 0 6px 14px -2px rgba(0,0,0,.3); transition: transform 520ms var(--spring); z-index: 2; }
 
@@ -718,7 +725,7 @@ dialog.sheet.open::backdrop { opacity: 1; }
 .cons li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; border: 2px solid var(--trail); margin-top: 7px; }
 
 .disclose { margin-top: var(--s-4); display: inline-flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 18px 0 14px; border-radius: var(--r-chip); background: var(--fog); font-size: var(--t-15); font-weight: 650; transition: background var(--t-fast); }
-.disclose:hover { background: var(--fog-2); }
+@media (hover: hover) { .disclose:hover { background: var(--fog-2); } }
 .disclose svg { width: 16px; height: 16px; transition: transform var(--t-ui) var(--spring); }
 .disclose[aria-expanded="true"] svg { transform: rotate(45deg); }
 .expand { display: grid; grid-template-rows: 0fr; transition: grid-template-rows var(--t-slow) var(--ease); }
@@ -745,7 +752,7 @@ dialog.sheet.open::backdrop { opacity: 1; }
 
 .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-2); }
 .metric { text-align: left; border-radius: var(--r-m); background: var(--fog); padding: var(--s-3); display: grid; gap: 8px; align-content: start; transition: background var(--t-ui), transform var(--t-fast) var(--ease); min-width: 0; }
-.metric:hover { background: var(--trail-wash); }
+@media (hover: hover) { .metric:hover { background: var(--trail-wash); } }
 .metric:active { transform: scale(.98); }
 .metric .v { white-space: nowrap; }
 .metric .k { font-size: var(--t-15); font-weight: 650; color: var(--ink-2); }
@@ -784,7 +791,7 @@ dialog.sheet.open::backdrop { opacity: 1; }
 .tx-tabs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; position: relative; }
 .tx-tabs button { text-align: left; padding: 12px 16px 14px; border-radius: 20px; min-height: 64px; display: grid; gap: 2px; align-content: start; font-size: var(--t-15); font-weight: 650; line-height: 1.3; color: var(--ink-2); transition: background var(--t-fast), color var(--t-fast); position: relative; z-index: 2; }
 .tx-tabs button small { font-size: var(--t-13); font-weight: 600; color: var(--ink-3); }
-.tx-tabs button:hover { background: rgba(255,255,255,.55); }
+@media (hover: hover) { .tx-tabs button:hover { background: rgba(255,255,255,.55); } }
 .tx-tabs button[aria-selected="true"] { background: var(--white); color: var(--ink); box-shadow: 0 6px 16px -8px rgba(0,0,0,.25); }
 .tx-tabs button[aria-selected="true"] small { color: var(--trail); }
 .tx-panel { margin-top: 8px; border-radius: 20px; background: var(--white); padding: var(--s-4); }
@@ -841,7 +848,7 @@ dialog.sheet.open::backdrop { opacity: 1; }
 .strip { position: relative; height: 112px; margin-inline: 8px; border-bottom: 2px solid var(--ink); }
 .strip .dot { position: absolute; width: 14px; height: 14px; margin-left: -7px; margin-bottom: 3px; border-radius: 50%; background: var(--ink); transition: background var(--t-fast), transform var(--t-ui) var(--spring); }
 .strip .dot::before { content: ""; position: absolute; inset: -8px; }
-.strip .dot:hover { transform: scale(1.35); background: var(--trail); }
+@media (hover: hover) { .strip .dot:hover { transform: scale(1.35); background: var(--trail); } }
 .strip .dot.on { transform: scale(1.5); background: var(--trail); box-shadow: 0 0 0 3px var(--white); }
 .strip-axis { position: relative; height: 26px; margin-inline: 8px; font-size: var(--t-13); font-weight: 600; color: var(--ink-3); font-variant-numeric: tabular-nums; }
 .strip-axis span { position: absolute; top: 6px; transform: translateX(-50%); }
@@ -863,7 +870,8 @@ dialog.sheet.open::backdrop { opacity: 1; }
 .quotes .who { font-size: var(--t-13); font-weight: 650; color: var(--ink-3); }
 .quotes blockquote { margin-top: 4px; font-family: var(--serif); font-size: var(--t-19); line-height: 1.5; }
 mark.code { background: transparent; color: inherit; font: inherit; padding: 1px 2px; border-radius: 4px; box-shadow: inset 0 -2px 0 var(--trail); cursor: pointer; transition: background var(--t-fast), box-shadow var(--t-fast); }
-mark.code:hover, mark.code.on, mark.code:focus-visible { background: var(--trail-wash-2); box-shadow: inset 0 -3px 0 var(--trail); }
+mark.code.on, mark.code:focus-visible { background: var(--trail-wash-2); box-shadow: inset 0 -3px 0 var(--trail); }
+@media (hover: hover) { mark.code:hover { background: var(--trail-wash-2); box-shadow: inset 0 -3px 0 var(--trail); } }
 mark.code sup { font-family: var(--sans); font-size: 11px; font-weight: 750; color: var(--trail); margin-left: 3px; }
 .codebook { border-radius: 20px; background: var(--white); padding: var(--s-3); display: grid; align-content: start; gap: 10px; }
 .codebook .cname { font-size: var(--t-30); font-weight: 700; line-height: 1.15; letter-spacing: -.015em; color: var(--trail); font-stretch: 88%; }
@@ -884,7 +892,7 @@ mark.code sup { font-family: var(--sans); font-size: 11px; font-weight: 750; col
 .funnel .ex { margin-top: 14px; font-family: var(--serif); font-size: var(--t-15); line-height: 1.5; color: var(--ink-2); }
 .themes { margin-top: 12px; display: grid; gap: 6px; }
 .themes button { text-align: left; font-size: var(--t-15); font-weight: 600; line-height: 1.3; padding: 10px 14px; border-radius: 14px; background: rgba(255,255,255,.6); transition: background var(--t-fast), color var(--t-fast), transform var(--t-fast); }
-.themes button:hover { background: var(--white); }
+@media (hover: hover) { .themes button:hover { background: var(--white); } }
 .themes button:active { transform: scale(.98); }
 .themes button[aria-pressed="true"] { background: var(--trail); color: var(--white); }
 @media (max-width: 860px) { .funnel { grid-template-columns: minmax(0, 1fr); } }
@@ -925,13 +933,50 @@ mark.code sup { font-family: var(--sans); font-size: 11px; font-weight: 750; col
 
 .nextcase { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-2); padding-block: var(--s-6) var(--s-7); }
 .nextcase a { display: grid; gap: 6px; align-content: end; min-height: 140px; padding: var(--s-3) var(--s-4); border-radius: var(--r-l); text-decoration: none; background: var(--fog); transition: background var(--t-ui), transform var(--t-fast) var(--ease); }
-.nextcase a:hover { background: var(--fog-2); }
+@media (hover: hover) { .nextcase a:hover { background: var(--fog-2); } }
 .nextcase a:active { transform: scale(.985); }
 .nextcase a.nx { background: var(--nc); color: var(--white); text-align: right; }
-.nextcase a.nx:hover { filter: brightness(1.08); }
+@media (hover: hover) { .nextcase a.nx:hover { filter: brightness(1.08); } }
 .nextcase span { font-size: var(--t-15); font-weight: 600; opacity: .8; }
 .nextcase b { font-size: var(--t-40); font-weight: 720; letter-spacing: -.02em; line-height: 1; font-stretch: 80%; }
 @media (max-width: 640px) { .nextcase { grid-template-columns: minmax(0, 1fr); } }
+
+/* =====================================================================
+   TOUCH
+   No hover on phones and tablets, so every hover cue has a tap or press
+   equivalent: things answer the finger the moment it lands.
+   ===================================================================== */
+html { -webkit-tap-highlight-color: transparent; }
+.glass.pressed::after { opacity: 1; transition-duration: 80ms; }
+.callout .open { display: none; }
+.callout.tap { pointer-events: auto; }
+.callout.tap small { display: none; }
+.callout.tap .open { margin-top: 12px; display: inline-flex; align-items: center; gap: 10px; min-height: 44px; font-size: var(--t-15); font-weight: 700; color: var(--tc); text-decoration: none; }
+.callout .open i { width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--tc); color: var(--white); }
+.callout .open svg { width: 16px; height: 16px; }
+.map-hint { display: none; }
+.strip { touch-action: pan-y; }
+@media (hover: none) {
+  .map-hint { position: absolute; left: var(--s-2); top: var(--s-2); z-index: 5; display: inline-flex; align-items: center; gap: 8px; border-radius: var(--r-chip); padding: 8px 14px 8px 10px; font-size: var(--t-13); font-weight: 600; transition: opacity var(--t-ui), transform var(--t-ui) var(--ease); }
+  .map-hint > * { position: relative; z-index: 3; }
+  .map-hint i { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--ink); animation: tapHint 2.4s var(--ease) infinite; }
+  .map.tried .map-hint { opacity: 0; transform: translateY(-6px); pointer-events: none; }
+  .legend .go { transform: scale(1); opacity: 1; }
+  .legend a:active { background: rgba(255,255,255,.7); }
+  .legend a:active .sw { border-top-style: solid; }
+  .legend a:active .go { transform: scale(.88); }
+  .panel { transition: transform var(--t-fast) var(--ease), box-shadow var(--t-slow) var(--ease); }
+  .panel:active { transform: scale(.985); }
+  .panel:active .p-cta i { transform: translateX(5px); }
+  .chip-link:active { background: var(--black); color: var(--white); }
+  .nextcase a:active, .metric:active, .themes button:active, .tx-tabs button:active, .disclose:active, .back:active, .icon-btn:active, .c-act:active { transform: scale(.96); }
+  .nextcase a, .themes button, .tx-tabs button, .disclose, .back { transition-property: transform, background, color, box-shadow; transition-duration: var(--t-fast); }
+  .dock a:active, .dock button:active { color: var(--ink); }
+  .postcard:active { --lift: -3px; }
+  .strip .dot::before { inset: -11px -4px; }
+}
+@media (hover: none) and (max-width: 380px) { .map-hint { top: 60px; } }
+@keyframes tapHint { 0%, 100% { transform: scale(1); opacity: 1; } 45% { transform: scale(.7); opacity: .55; } }
 
 /* view transitions */
 ::view-transition-old(root), ::view-transition-new(root) { animation-duration: 320ms; animation-timing-function: var(--ease); }
@@ -1007,6 +1052,7 @@ mark.code sup { font-family: var(--sans); font-size: 11px; font-weight: 750; col
         <svg class="topo" id="topo" role="group" aria-labelledby="legend-title"></svg>
         <p class="status glass"><i aria-hidden="true"></i><span>Available for work</span></p>
         <div class="callout glass" id="callout" aria-hidden="true"></div>
+        <p class="map-hint glass" aria-hidden="true"><i></i><span>Tap a trail to preview it</span></p>
       </div>
       <div class="legend glass" id="legend">
         <h2 id="legend-title">Trails through my research <span>3 studies</span></h2>
@@ -1465,6 +1511,22 @@ addEventListener("pointermove", e => {
   g.style.setProperty("--mx", (e.clientX - r.left) + "px");
   g.style.setProperty("--my", (e.clientY - r.top) + "px");
 }, { passive: true });
+// what kind of pointer the visitor used last: touch gets tap-to-preview instead of hover
+let lastPointer = "mouse";
+addEventListener("pointerdown", e => {
+  lastPointer = e.pointerType || "mouse";
+  if (e.pointerType === "mouse") return;
+  const g = e.target.closest && e.target.closest(".glass");
+  if (!g) return;
+  const r = g.getBoundingClientRect();
+  g.style.setProperty("--mx", (e.clientX - r.left) + "px");
+  g.style.setProperty("--my", (e.clientY - r.top) + "px");
+  g.classList.add("pressed");
+  const up = () => { g.classList.remove("pressed"); removeEventListener("pointerup", up); removeEventListener("pointercancel", up); };
+  addEventListener("pointerup", up); addEventListener("pointercancel", up);
+}, { passive: true, capture: true });
+addEventListener("keydown", () => { lastPointer = "key"; }, true);
+const isTouch = () => lastPointer === "touch" || lastPointer === "pen";
 
 // ================= TOPOGRAPHIC MAP =================
 // Perlin noise, seeded so the land is the same on every visit.
@@ -1632,31 +1694,48 @@ function renderMap() {
 }
 function wireMap() {
   const map = $("#map"), call = $("#callout");
-  const on = id => {
+  let picked = null;   // trail chosen by a tap; a second tap (or the callout link) opens it
+  const on = (id, tap) => {
     map.classList.toggle("hovering", !!id);
     $$(".trail", map).forEach(t => t.classList.toggle("on", t.dataset.id === id));
     $$("#legend-list a").forEach(a => a.classList.toggle("on", a.dataset.id === id));
+    call.classList.toggle("tap", !!(id && tap));
     if (!id) { call.classList.remove("on"); return; }
     const p = PROJECTS.find(x => x.id === id), pin = $(`.trail[data-id="${id}"] .pin`, map);
     call.style.setProperty("--tc", TRAILS[id].c);
-    call.innerHTML = `<span class="lbl">${p.org}</span><p>${plain(p.hmw)}</p><small>Select the trail to open its guide</small>`;
+    call.innerHTML = `<span class="lbl">${p.org}</span><p>${plain(p.hmw)}</p><small>Select the trail to open its guide</small><a class="open" href="#case-${id}" data-route="case-${id}" tabindex="-1">Open the trail guide <i>${ic("arrow")}</i></a>`;
     const mr = map.getBoundingClientRect(), pr = pin.getBoundingClientRect(), cwid = call.offsetWidth, chh = call.offsetHeight;
     let x = pr.left - mr.left + 24, y = pr.top - mr.top + 34;
     if (x + cwid > mr.width - 16) x = pr.left - mr.left - cwid - 16;
     if (y + chh > mr.height - 16) y = pr.top - mr.top - chh - 12;
-    x = Math.max(16, x); y = Math.max(16, y);
+    x = Math.max(16, Math.min(x, mr.width - cwid - 16)); y = Math.max(16, y);
     call.style.left = x + "px"; call.style.top = y + "px";
+    call.style.setProperty("--ox", (pr.left - mr.left - x) + "px"); call.style.setProperty("--oy", (pr.top - mr.top - y) + "px");
     call.classList.add("on");
   };
+  const clear = () => { picked = null; on(null); };
   $$(".trail", map).forEach(t => {
-    t.addEventListener("pointerenter", () => on(t.dataset.id));
-    t.addEventListener("pointerleave", () => on(null));
-    t.addEventListener("focus", () => on(t.dataset.id));
-    t.addEventListener("blur", () => on(null));
+    t.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") on(t.dataset.id); });
+    t.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") on(null); });
+    t.addEventListener("focus", () => { if (!isTouch()) on(t.dataset.id); });
+    t.addEventListener("blur", () => { if (!isTouch()) on(null); });
+    t.addEventListener("click", e => {
+      if (!isTouch()) return;                          // mouse, keyboard and screen readers open straight away
+      if (picked === t.dataset.id) { clear(); return; } // second tap on the same trail opens it
+      e.preventDefault(); e.stopPropagation();
+      picked = t.dataset.id; map.classList.add("tried");
+      on(picked, true);
+      if (navigator.vibrate) try { navigator.vibrate(8); } catch (err) {}
+    });
   });
+  call.addEventListener("click", e => { if (e.target.closest(".open")) clear(); });
+  map.addEventListener("click", e => { if (picked && !e.target.closest(".trail, .callout")) clear(); });
+  document.addEventListener("pointerdown", e => { if (picked && !e.target.closest("#map")) clear(); }, { passive: true });
   $$("#legend-list a").forEach(a => {
-    a.onpointerenter = () => on(a.dataset.id); a.onpointerleave = () => on(null);
-    a.onfocus = () => on(a.dataset.id); a.onblur = () => on(null);
+    a.onpointerenter = e => { if (e.pointerType === "mouse") on(a.dataset.id); };
+    a.onpointerleave = e => { if (e.pointerType === "mouse") on(null); };
+    a.onfocus = () => { if (!isTouch()) on(a.dataset.id); };
+    a.onblur = () => { if (!isTouch()) on(null); };
   });
 }
 $("#legend-list").innerHTML = PROJECTS.map(p => `<li><a href="#case-${p.id}" data-route="case-${p.id}" data-id="${p.id}" style="--tc:${TRAILS[p.id].c}">
@@ -1726,6 +1805,7 @@ $("#fold").innerHTML = PROJECTS.map(p => {
     const r = pc.getBoundingClientRect(), x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
     pc.style.setProperty("--gx", (x * 100) + "%"); pc.style.setProperty("--gy", (y * 100) + "%"); pc.style.setProperty("--go", 1);
   });
+  pc.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") pc.dispatchEvent(new PointerEvent("pointermove", e)); });
   pc.addEventListener("pointerleave", () => pc.style.setProperty("--go", 0));
 })();
 
@@ -2061,10 +2141,26 @@ function wireEquinix() {
 }
 function wireAno() {
   const strip = $("#strip"), read = $("#strip-read"), stack = {};
-  const summary = "1 to 40 years volunteering, median 7";
+  const summary = "1 to 40 years volunteering, median 7" + (matchMedia("(hover: none)").matches ? ". Slide a finger along the line to see each docent." : "");
   strip.innerHTML = DOCENTS.map(([n, y]) => { const k = stack[y] = (stack[y] || 0) + 1; return `<button type="button" class="dot" style="left:${y / 40 * 100}%;bottom:${(k - 1) * 17}px" aria-label="${n}, ${y} year${y > 1 ? "s" : ""}" aria-pressed="false" data-n="${n}" data-y="${y}"></button>`; }).join("");
   read.textContent = summary;
+  const pickDot = b => {
+    if (b.classList.contains("on")) return;
+    $$(".dot", strip).forEach(x => { x.classList.remove("on"); x.setAttribute("aria-pressed", "false"); });
+    b.classList.add("on"); b.setAttribute("aria-pressed", "true");
+    read.innerHTML = `<b>${b.dataset.n}</b>, ${b.dataset.y} year${b.dataset.y > 1 ? "s" : ""} volunteering`;
+  };
+  const nearest = e => {
+    let best = null, bd = Infinity;
+    $$(".dot", strip).forEach(d => { const r = d.getBoundingClientRect(), dx = r.left + r.width / 2 - e.clientX, dy = (r.top + r.height / 2 - e.clientY) * .6, q = dx * dx + dy * dy; if (q < bd) { bd = q; best = d; } });
+    return best;
+  };
+  let scrub = false;
+  strip.addEventListener("pointerdown", e => { if (e.pointerType === "mouse") return; scrub = true; const d = nearest(e); if (d) pickDot(d); });
+  strip.addEventListener("pointermove", e => { if (!scrub) return; const d = nearest(e); if (d) pickDot(d); });
+  ["pointerup", "pointercancel", "pointerleave"].forEach(ev => strip.addEventListener(ev, () => { scrub = false; }));
   strip.addEventListener("click", e => {
+    if (isTouch()) return;   // a finger already picked a docent on pointerdown
     const b = e.target.closest(".dot"); if (!b) return;
     const was = b.classList.contains("on");
     $$(".dot", strip).forEach(x => { x.classList.remove("on"); x.setAttribute("aria-pressed", "false"); });
