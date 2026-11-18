@@ -28,7 +28,7 @@
 
   // How this visitor got this version: through the random split, a forced ?v= link, or a direct link to /a/ or /b/.
   var a = session("gj-ab-assign");
-  var assignment = a === "random:" + VARIANT ? "random" : a === "forced:" + VARIANT ? "forced" : "direct_link";
+  var assignment = a === "random:" + VARIANT ? "random" : a === "forced:" + VARIANT ? "forced" : a === "rollout:" + VARIANT ? "rollout" : "direct_link";
 
   // Every event (including the page views both sites already send) carries the experiment tags.
   // gtag's "set" command does not attach custom fields to events, so they are added here.

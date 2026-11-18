@@ -1,3 +1,7 @@
+> **Test ended Nov 18, 2026.** All visitors now go to version B (the redesign). Visits after this date are tagged
+> `exp_assignment = rollout`, so filter them out when you analyze the test window. The original is still viewable
+> at `/a/?v=a`.
+
 # Portfolio A/B test: portfolio_redesign_v1
 
 Version A is the original site. Version B is the field-guide redesign. Both send data to the same

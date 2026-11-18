@@ -1,6 +1,18 @@
 <!doctype html>
 <html lang="en">
 <head>
+<script>
+/* The A/B test has ended: send old links to version B unless the original is asked for with ?v=a */
+(function () {
+  try {
+    if (new URLSearchParams(location.search).get("v") !== "a") {
+      if (sessionStorage.getItem("gj-ab-ref") === null) sessionStorage.setItem("gj-ab-ref", document.referrer || "");
+      sessionStorage.setItem("gj-ab-assign", "rollout:b");
+      location.replace("../b/" + location.search + location.hash);
+    }
+  } catch (e) { location.replace("../b/"); }
+})();
+</script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="Gabriel Johnston, UX researcher (HCI, Cognitive Science). Research at Equinix, NVIDIA, and Año Nuevo State Park: start with the question, follow the evidence.">
@@ -28,7 +40,7 @@
 
   // How this visitor got this version: through the random split, a forced ?v= link, or a direct link to /a/ or /b/.
   var a = session("gj-ab-assign");
-  var assignment = a === "random:" + VARIANT ? "random" : a === "forced:" + VARIANT ? "forced" : "direct_link";
+  var assignment = a === "random:" + VARIANT ? "random" : a === "forced:" + VARIANT ? "forced" : a === "rollout:" + VARIANT ? "rollout" : "direct_link";
 
   // Every event (including the page views both sites already send) carries the experiment tags.
   // gtag's "set" command does not attach custom fields to events, so they are added here.
