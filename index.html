@@ -10,22 +10,16 @@
 <meta property="og:description" content="Gabriel Johnston, UX researcher (HCI, Cognitive Science). Research at Equinix, NVIDIA, and Año Nuevo State Park: start with the question, follow the evidence.">
 <meta name="theme-color" content="#000000">
 <script>
-/* A/B split for portfolio_redesign_v1
-   Each new visitor is randomly given version A (original) or B (redesign), 50/50,
-   and keeps that version on every later visit from the same browser.
-   Add ?v=a or ?v=b to a link to force a version (those visits are tagged "forced"). */
+/* The A/B test (portfolio_redesign_v1) ended on Nov 18, 2026. Every visitor now gets version B.
+   Visits are tagged exp_assignment "rollout" so they stay separate from the test data in Analytics.
+   The original is still viewable at a/?v=a. */
 (function () {
-  var KEY = "gj-ab-portfolio-v1", v = null, how = "random";
   try {
-    var forced = new URLSearchParams(location.search).get("v");
-    if (forced === "a" || forced === "b") { v = forced; how = "forced"; }
-    else v = localStorage.getItem(KEY);
-    if (v !== "a" && v !== "b") v = Math.random() < 0.5 ? "a" : "b";
-    if (how === "random") localStorage.setItem(KEY, v);
+    localStorage.removeItem("gj-ab-portfolio-v1");
     if (sessionStorage.getItem("gj-ab-ref") === null) sessionStorage.setItem("gj-ab-ref", document.referrer || "");
-    sessionStorage.setItem("gj-ab-assign", how + ":" + v);
-  } catch (e) { v = v || (Math.random() < 0.5 ? "a" : "b"); }
-  location.replace(v + "/" + location.search + location.hash);
+    sessionStorage.setItem("gj-ab-assign", "rollout:b");
+  } catch (e) {}
+  location.replace("b/" + location.search + location.hash);
 })();
 </script>
 <noscript><meta http-equiv="refresh" content="0; url=b/"></noscript>
