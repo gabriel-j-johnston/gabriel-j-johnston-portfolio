@@ -436,15 +436,9 @@ em { font-style: normal; }
   .p-cta { justify-self: start; align-self: end; }
 }
 /* desktop: the three studies are one printed tri-fold. A bold edge runs round the sheet,
-   the two folds are creases with printer's fold marks above and below, and each panel keeps wide margins */
+   the two folds are creases, and each panel keeps wide margins */
 @media (min-width: 981px) {
-  .fold { --edge: 3px solid var(--black); column-gap: 0; position: relative; padding-block: 26px; }
-  .fold::before { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 5;
-    background:
-      linear-gradient(var(--black), var(--black)) calc(100% / 3) 0 / 2px 16px no-repeat,
-      linear-gradient(var(--black), var(--black)) calc(200% / 3) 0 / 2px 16px no-repeat,
-      linear-gradient(var(--black), var(--black)) calc(100% / 3) 100% / 2px 16px no-repeat,
-      linear-gradient(var(--black), var(--black)) calc(200% / 3) 100% / 2px 16px no-repeat; }
+  .fold { --edge: 3px solid var(--black); column-gap: 0; position: relative; }
   .panel, .panel:nth-child(n) { border-block: var(--edge); border-radius: 0; box-shadow: 0 34px 50px -34px rgba(0,0,0,.4); }
   .panel:nth-child(1) { border-left: var(--edge); border-radius: var(--r-m) 0 0 var(--r-m); }
   .panel:nth-child(2) { border-inline: 1.5px dashed rgba(0,0,0,.4); }
