@@ -448,11 +448,11 @@ em { font-style: normal; }
   .panel:nth-child(3)::before { background: linear-gradient(270deg, rgba(0,0,0,0) 62%, rgba(0,0,0,.09)); }
   .panel:nth-child(n) .panel-blaze { border-radius: 0; }
   /* sized to the window so the whole pamphlet fits on a laptop screen */
-  .panel-media { aspect-ratio: auto; height: clamp(104px, calc(24vh - 40px), 214px); margin: clamp(16px, 2.6vh, 32px) var(--s-5) 0; border-radius: var(--r-s); }
-  .panel-body { padding: clamp(14px, 2.4vh, 32px) var(--s-5) clamp(18px, 3vh, 44px); }
-  .panel-body, .panel-body:nth-child(n) { row-gap: clamp(10px, 1.5vh, 16px); }
-  .panel h3 { font-size: clamp(19px, 2.6vh, 24px); }
-  .p-out { padding: clamp(8px, 1.2vh, 12px) 14px; }
+  .panel-media { aspect-ratio: auto; height: clamp(150px, calc(32vh - 50px), 250px); margin: clamp(22px, 3.2vh, 34px) var(--s-5) 0; border-radius: var(--r-s); }
+  .panel-body { padding: clamp(20px, 3vh, 34px) var(--s-5) clamp(24px, 3.6vh, 44px); }
+  .panel-body, .panel-body:nth-child(n) { row-gap: clamp(14px, 2vh, 18px); }
+  .panel h3 { font-size: clamp(21px, 3vh, 25px); }
+  .p-out { padding: clamp(10px, 1.4vh, 13px) 14px; }
   .panel:focus-within, .panel:nth-child(n):focus-within { box-shadow: 0 34px 60px -30px rgba(0,0,0,.45); }
 }
 @media (min-width: 981px) and (hover: hover) { .panel:nth-child(n):hover { box-shadow: 0 34px 60px -30px rgba(0,0,0,.45); } }
