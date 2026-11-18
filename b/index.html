@@ -438,16 +438,15 @@ em { font-style: normal; }
 /* desktop: the three studies are one printed tri-fold. A bold edge runs round the sheet,
    the two folds are creases, and each panel keeps wide margins */
 @media (min-width: 981px) {
-  .fold { --edge: 3px solid var(--black); column-gap: 0; position: relative; }
-  .panel, .panel:nth-child(n) { border-block: var(--edge); border-radius: 0; box-shadow: 0 34px 50px -34px rgba(0,0,0,.4); }
+  .fold { --edge: 2px solid var(--black); column-gap: 0; position: relative; }
+  .panel, .panel:nth-child(n) { border-block: var(--edge); border-radius: 0; overflow: clip; box-shadow: 0 34px 50px -34px rgba(0,0,0,.4); }
+  .panel-blaze { height: 5px; }
   .panel:nth-child(1) { border-left: var(--edge); border-radius: var(--r-m) 0 0 var(--r-m); }
   .panel:nth-child(2) { border-inline: 1.5px dashed rgba(0,0,0,.4); }
   .panel:nth-child(3) { border-right: var(--edge); border-radius: 0 var(--r-m) var(--r-m) 0; }
   .panel:nth-child(1)::before { background: linear-gradient(90deg, rgba(0,0,0,0) 62%, rgba(0,0,0,.09)); }
   .panel:nth-child(3)::before { background: linear-gradient(270deg, rgba(0,0,0,0) 62%, rgba(0,0,0,.09)); }
   .panel:nth-child(n) .panel-blaze { border-radius: 0; }
-  .panel:nth-child(1) .panel-blaze { border-top-left-radius: calc(var(--r-m) - 3px); }
-  .panel:nth-child(3) .panel-blaze { border-top-right-radius: calc(var(--r-m) - 3px); }
   .panel-media { margin: var(--s-4) var(--s-5) 0; border-radius: var(--r-s); }
   .panel-body { padding: var(--s-4) var(--s-5) var(--s-5); }
   .panel:focus-within, .panel:nth-child(n):focus-within { box-shadow: 0 34px 60px -30px rgba(0,0,0,.45); }
@@ -455,7 +454,8 @@ em { font-style: normal; }
 @media (min-width: 981px) and (hover: hover) { .panel:nth-child(n):hover { box-shadow: 0 34px 60px -30px rgba(0,0,0,.45); } }
 @media (max-width: 980px) {
   .fold { grid-template-columns: minmax(0, 1fr); gap: var(--s-5); perspective: none; }
-  .panel, .panel:nth-child(n) { border: 3px solid var(--black); }
+  .panel, .panel:nth-child(n) { border: 2px solid var(--black); }
+  .panel-blaze { height: 5px; }
   .panel, .panel:nth-child(n) { transform: none; border-radius: var(--r-m); overflow: hidden; }
   .panel::before { display: none; }
   .panel:nth-child(n) .panel-blaze { border-radius: 0; }
